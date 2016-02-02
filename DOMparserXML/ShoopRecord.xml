@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shop>
+    <goods id="1">
+        <category>nootebook</category>
+        <discriotion>productive and stylish nootebook</discriotion>
+        <name>ProBook</name>
+        <price>500.0</price>
+    </goods>
+    <goods id="2">
+        <category>nootebook</category>
+        <discriotion>productive nootebook</discriotion>
+        <name>Pavilion</name>
+        <price>450.0</price>
+    </goods>
+    <goods id="3">
+        <category>mouse</category>
+        <discriotion>input device</discriotion>
+        <name>rapoo</name>
+        <price>30.0</price>
+    </goods>
+</shop>
