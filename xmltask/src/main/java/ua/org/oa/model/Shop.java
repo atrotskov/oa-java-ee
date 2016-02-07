@@ -1,4 +1,4 @@
-package uaorgoa.model;
+package ua.org.oa.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;

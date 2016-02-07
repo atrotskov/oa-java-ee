@@ -1,14 +1,12 @@
-package uaorgoa;
+package ua.org.oa;
 
-import uaorgoa.model.Goods;
-import uaorgoa.model.Shop;
+import ua.org.oa.model.Goods;
+import ua.org.oa.model.Shop;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
