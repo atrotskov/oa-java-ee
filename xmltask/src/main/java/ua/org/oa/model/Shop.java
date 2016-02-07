@@ -17,4 +17,18 @@ public class Shop {
     public void setGoods(ArrayList<Goods> goods) {
         this.goods = goods;
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (Goods good : this.goods) {
+            result += "--------------------------" + "\n" +
+                    "id = " + good.getId() + "\n" +
+                    "Name = " + good.getName() + "\n" +
+                    "Price = " + good.getPrice() + "\n" +
+                    "Category = " + good.getCategory() + "\n" +
+                    "Discription = " + good.getDiscriotion() + "\n";
+        }
+        return result;
+    }
 }
