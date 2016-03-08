@@ -1,7 +1,10 @@
-package main.java.atrotskov.dao.impl;
+package atrotskov.dao.impl;
 
-import main.java.atrotskov.dao.api.UserDao;
-import main.java.atrotskov.model.User;
+import atrotskov.dao.api.UserDao;
+import atrotskov.model.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,8 +14,14 @@ import java.util.List;
  */
 @Repository
 public class UserDaoHiberImpl implements UserDao {
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public User create(User user) {
+        Session sess = null;
+        sess = sessionFactory.getCurrentSession();
+        sess.
         return null;
     }
 

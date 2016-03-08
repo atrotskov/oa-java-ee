@@ -1,8 +1,11 @@
-package main.java.atrotskov.service.impl;
+package atrotskov.service.impl;
 
+import atrotskov.dao.api.UserDao;
+import atrotskov.model.User;
+import atrotskov.service.api.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import main.java.atrotskov.model.User;
-import main.java.atrotskov.service.api.UserService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,11 +14,16 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    UserDao userDao;
+
+    @Transactional
     @Override
     public User create(User user) {
-        return null;
+        return userDao.create(user);
     }
 
+    @Transactional
     @Override
     public User getById(Long id) {
         return null;

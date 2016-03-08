@@ -1,6 +1,6 @@
-package main.java.atrotskov.service.api;
+package atrotskov.service.api;
 
-import main.java.atrotskov.model.User;
+import atrotskov.model.User;
 
 import java.util.List;
 

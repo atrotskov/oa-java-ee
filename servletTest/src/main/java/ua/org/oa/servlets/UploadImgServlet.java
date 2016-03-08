@@ -3,6 +3,8 @@ package ua.org.oa.servlets;
 import ua.org.oa.Utils.IOMyClass;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +18,10 @@ import java.util.List;
 /**
  * Created by jdev on 07.02.2016.
  */
-/*@WebServlet(name = "UploadImgServlet", urlPatterns = {"/upload"})
+@WebServlet(name = "UploadImgServlet", urlPatterns = {"/upload"})
 @MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
         maxFileSize=1024*1024*10,      // 10MB
-        maxRequestSize=1024*1024*50)   // 50MB*/
+        maxRequestSize=1024*1024*50)   // 50MB
 public class UploadImgServlet extends HttpServlet {
 
     private static final String SAVE_DIR = "uploadFiles";

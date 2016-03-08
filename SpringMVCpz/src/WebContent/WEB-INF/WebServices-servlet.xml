@@ -8,8 +8,8 @@
                    http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
              	   http://www.springframework.org/schema/context
                    http://www.springframework.org/schema/context/spring-context-4.1.xsd">
-    <context:component-scan base-package="atrotskov"/>
-    <import resource="dbContext.xml"></import>
+    <context:component-scan base-package="atrotskov.controller"/>
+    <context:component-scan base-package="atrotskov.service"/>
     <mvc:annotation-driven/>
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/pages/"/>
