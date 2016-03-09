@@ -19,11 +19,12 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Enumerated(EnumType.STRING)
+
 	@Column(name = "age")
 	private Integer age;
 
 	@Column(name = "role")
+	@Enumerated(EnumType.STRING)
 	private Role role;
 	
 	public Long getId() {

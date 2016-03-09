@@ -1,5 +1,6 @@
 package atrotskov.service.impl;
 
+
 import atrotskov.dao.api.UserDao;
 import atrotskov.model.User;
 import atrotskov.service.api.UserService;
@@ -13,34 +14,38 @@ import java.util.List;
  * Created by jdev on 29.02.2016.
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
-    @Transactional
+
     @Override
     public User create(User user) {
         return userDao.create(user);
     }
 
-    @Transactional
+
     @Override
     public User getById(Long id) {
-        return null;
+        return userDao.getById(id);
     }
+
 
     @Override
     public boolean delete(User user) {
-        return false;
+        return userDao.delete(user);
     }
+
 
     @Override
     public User update(User user) {
-        return null;
+        return userDao.update(user);
     }
+
 
     @Override
     public List<User> getAll() {
-        return null;
+        return userDao.getAll();
     }
 }
