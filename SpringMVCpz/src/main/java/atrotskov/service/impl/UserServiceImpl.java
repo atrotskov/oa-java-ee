@@ -26,21 +26,24 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public User getById(Long id) {
-        return null;
+        return userDao.getById(id);
     }
 
+    @Transactional
     @Override
     public boolean delete(User user) {
-        return false;
+        return userDao.delete(user);
     }
 
+    @Transactional
     @Override
     public User update(User user) {
-        return null;
+        return userDao.update(user);
     }
 
+    @Transactional
     @Override
     public List<User> getAll() {
-        return null;
+        return userDao.getAll();
     }
 }

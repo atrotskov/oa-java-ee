@@ -21,8 +21,8 @@ public class UserDaoHiberImpl implements UserDao {
     public User create(User user) {
         Session sess = null;
         sess = sessionFactory.getCurrentSession();
-        sess.
-        return null;
+        sess.save(user);
+        return user;
     }
 
     @Override
