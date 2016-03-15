@@ -13,4 +13,5 @@ public interface UserService {
         boolean delete(User user);
         User update(User user);
         List<User> getAll();
+        User findByEmail(String email);
 }

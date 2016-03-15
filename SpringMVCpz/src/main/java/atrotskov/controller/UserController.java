@@ -6,9 +6,9 @@ import atrotskov.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -62,10 +62,8 @@ public class UserController {
     @RequestMapping(value = "/updateuser", method = RequestMethod.POST)
      public String getUpdateUserPage(@RequestParam("id") String id,
                                      ModelMap model){
-
         User user = userService.getById(Long.parseLong(id));
         model.addAttribute("userForUpdate", user);
-
         return "updateUser";
     }
 
@@ -77,7 +75,6 @@ public class UserController {
                              @RequestParam("age") String age,
                              @RequestParam("role") String role,
                              ModelMap model){
-
         User user = new User();
         user.setId(Long.parseLong(id));
         user.setFirstName(firstName);
@@ -85,19 +82,30 @@ public class UserController {
         user.setEmail(email);
         user.setAge(Integer.parseInt(age));
         user.setRole(Role.valueOf(role));
-
-
         user = userService.update(user);
-
         return "redirect:/userlist";
     }
 
     @RequestMapping(value = "/deleteuser", method = RequestMethod.POST)
     public String deleteUser(@RequestParam("id") String id){
-
         userService.delete(userService.getById(Long.parseLong(id)));
-
         return "redirect:/userlist";
     }
 
+    @RequestMapping(value = "/api/users/get/{id}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public User getUserById(@PathVariable("id") Long id) {
+        return userService.getById(id);
+    }
+
+    @RequestMapping(value = "/api/users/get/all", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<User> getAllUsers() {
+        return userService.getAll();
+    }
+
+    @RequestMapping(value = "/ajaxuser", method = RequestMethod.GET)
+    public String ajaxUser(){
+        return "ajaxUser";
+    }
 }

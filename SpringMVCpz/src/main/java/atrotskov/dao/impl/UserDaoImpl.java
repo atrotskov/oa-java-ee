@@ -4,6 +4,7 @@ import atrotskov.dao.api.UserDao;
 import atrotskov.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -54,4 +55,12 @@ public class UserDaoImpl implements UserDao {
         sess = sessionFactory.getCurrentSession();
         return sess.createCriteria(User.class).list();
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return (User) sessionFactory
+                .getCurrentSession()
+                .createCriteria(User.class).add(Restrictions.like("email", email + "%")).uniqueResult();
+    }
+
 }
