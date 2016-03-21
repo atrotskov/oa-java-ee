@@ -7,4 +7,12 @@ import java.util.List;
  */
 public class Subcategory extends Category {
     private Category parent;
+
+    public Category getParent() {
+        return parent;
+    }
+
+    public void setParent(Category parent) {
+        this.parent = parent;
+    }
 }
