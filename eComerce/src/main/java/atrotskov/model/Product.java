@@ -1,6 +1,7 @@
 package atrotskov.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by alexey on 21.03.16.
@@ -10,22 +11,25 @@ import javax.persistence.*;
 @Table(name = "PRODUCT")
 public class Product {
     @Id @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "product_id")
     private long id;
 
-    @Column(name = "vendor_code")
+    @Column(name = "vendor_code", nullable = false, unique = true)
     private String vendorCode;
 
     @Column(name = "short_desc")
     private String shortDesc;
 
+    @Column(name = "picture")
+    private String picture;
+
     @Column(name = "desc")
     private String desc;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private double price;
 
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     public long getId() {
@@ -74,5 +78,13 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

@@ -12,13 +12,19 @@ import java.util.List;
 @Table(name = "ORDER")
 public class Order {
     @Id @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "order_id")
     private long id;
 
-    @Column(name = "user")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "ORDER_PRODUCT",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> productList;
 
     @Column(name = "timestamp")

@@ -1,15 +1,47 @@
 package atrotskov.model;
 
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by alexey on 21.03.16.
  */
+@Entity
+@Table(name = "CATEGORY")
 public class Category {
+    @Id @GeneratedValue
+    @Column(name = "category_id")
     private long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "description")
     private String desc;
-    private List<Product> productList;
+
+    @Column(name = "parent_id")
+    private long parentId;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "CATEGORY_PRODUCT",
+            joinColumns = @JoinColumn(name = "catgory_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> productList;
+
+    public long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
+    }
+
+    public void setProductList(Set<Product> productList) {
+        this.productList = productList;
+    }
 
     public long getId() {
         return id;
@@ -35,11 +67,9 @@ public class Category {
         this.desc = desc;
     }
 
-    public List<Product> getProductList() {
+    public Set<Product> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
+
 }

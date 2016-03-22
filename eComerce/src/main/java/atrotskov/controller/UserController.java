@@ -51,7 +51,7 @@ public class UserController {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setAge(Integer.parseInt(age));
+
         user.setRole(Role.valueOf(role));
 
         userService.create(user);
@@ -80,7 +80,7 @@ public class UserController {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setAge(Integer.parseInt(age));
+
         user.setRole(Role.valueOf(role));
         user = userService.update(user);
         return "redirect:/userlist";
