@@ -22,10 +22,10 @@ public class UserController {
         return "hello";
     }
 
-    @RequestMapping(value = "/userlist", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getUserListGet(ModelMap model){
         model.addAttribute("userList", userService.getAll());
-        return "userList";
+        return "index";
     }
 
     @RequestMapping(value = "/userlist", method = RequestMethod.POST)

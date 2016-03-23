@@ -1,5 +1,6 @@
 package atrotskov.service.impl;
 
+import atrotskov.dao.api.CategoryDao;
 import atrotskov.model.Category;
 import atrotskov.service.api.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,35 +15,35 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
-    CategoryService categoryService;
+    CategoryDao categoryDao;
 
     @Override
     @Transactional
     public Category create(Category category) {
-        return categoryService.create(category);
+        return categoryDao.create(category);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Category getById(long id) {
-        return categoryService.getById(id);
+        return categoryDao.getById(id);
     }
 
     @Override
     @Transactional
     public boolean delete(Category category) {
-        return categoryService.delete(category);
+        return categoryDao.delete(category);
     }
 
     @Override
     @Transactional
     public Category update(Category category) {
-        return categoryService.update(category);
+        return categoryDao.update(category);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Category> getAll() {
-        return categoryService.getAll();
+        return categoryDao.getAll();
     }
 }
