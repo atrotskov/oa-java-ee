@@ -2,7 +2,7 @@ package atrotskov.model;
 
 public enum Role {
 
-	USER("user"), ADMIN("admin"), SUPER_ADMIN("Super admin");
+	GUEST("guest"), USER("user"), ADMIN("admin");
 	
 	private String displayName;
 	
