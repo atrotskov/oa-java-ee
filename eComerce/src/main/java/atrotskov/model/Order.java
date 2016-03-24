@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "ORDER_TB")
+@Table(name = "ORDER")
 public class Order {
     @Id @GeneratedValue
     @Column(name = "order_id")
