@@ -30,7 +30,6 @@
             <td><c:out value="${user.getEmail()}"></c:out></td>
             <td><c:out value="${user.getFirstName()}"></c:out></td>
             <td><c:out value="${user.getLastName()}"></c:out></td>
-            <td><c:out value="${user.getAge()}"></c:out></td>
             <td><c:out value="${user.getRole()}"></c:out></td>
             <td>
                 <form name="deleteuser" method="POST" action="/deleteuser">

@@ -1,37 +1,23 @@
-package atrotskov.model;
-
-import javax.persistence.*;
+package atrotskov.dto;
 
 /**
- * Created by alexey on 21.03.16.
+ * Created by alexey on 24.03.16.
  */
-
-@Entity
-@Table(name = "PRODUCT_TB")
-public class Product {
-    @Id @GeneratedValue
-    @Column(name = "product_id")
+public class ProductDto {
     private long id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "vendor_code", nullable = false, unique = true)
     private String vendorCode;
 
-    @Column(name = "product_pic")
-    private String picture;
-
-    @Column(name = "short_desc")
     private String shortDesc;
 
-    @Column(name = "description")
+    private String picture;
+
     private String desc;
 
-    @Column(name = "price", nullable = false)
     private double price;
 
-    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     public long getId() {
@@ -66,6 +52,14 @@ public class Product {
         this.shortDesc = shortDesc;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     public String getDesc() {
         return desc;
     }
@@ -88,13 +82,5 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
     }
 }
