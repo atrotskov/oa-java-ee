@@ -26,7 +26,7 @@
                             <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                             <prop key="hibernate.show_sql">true</prop><!--Hibernate будет выводить сгенерированый SQL в логи-->
                             <prop key="hibernate.format_sql">true</prop><!--Вывод в логи станет более читабельным-->
-                            <prop key="hibernate.hbm2ddl.auto">update</prop><!--Действие с базой-->
+                            <prop key="hibernate.hbm2ddl.auto">validate</prop><!--Действие с базой-->
                             <!--validate: валидирует схему БД не делает изменений в ней
                              update: изменяет схему в соответствии с мапингом в java
                              create: создает схему заново, удаляет данные

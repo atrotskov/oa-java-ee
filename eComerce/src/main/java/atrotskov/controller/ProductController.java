@@ -24,14 +24,24 @@ public class ProductController {
     @Autowired
     Transformer transformer;
 
-    @RequestMapping(value = "/product", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<ProductDto> getAllUsers() {
+    @RequestMapping(value = "/product", method = RequestMethod.GET)
+    public String getAllUsers(ModelMap mapping) {
         List<ProductDto> productDto = new ArrayList<>();
         for (Product product : productService.getAll()) {
             productDto.add(transformer.transformTo(product));
         }
-        return productDto;
+        mapping.addAttribute("productList", productDto);
+        return "products";
+    }
+
+    @RequestMapping(value = "/product/admin", method = RequestMethod.GET)
+    public String getAllUsersAdmin(ModelMap mapping) {
+        List<ProductDto> productDto = new ArrayList<>();
+        for (Product product : productService.getAll()) {
+            productDto.add(transformer.transformTo(product));
+        }
+        mapping.addAttribute("productList", productDto);
+        return "productAdmin";
     }
 
     @RequestMapping(value = "/product/add", method = RequestMethod.GET)
@@ -39,21 +49,21 @@ public class ProductController {
         return "addProductForm";
     }
 
-    @RequestMapping(value = "/product/add/action", method = RequestMethod.GET)
+    @RequestMapping(value = "/product/add/action", method = RequestMethod.POST)
     public String addProduct(ModelMap mapping,
                              @RequestParam("vendor") String vendorCode,
                              @RequestParam("name") String name,
                              @RequestParam("short-desc") String shortDesc,
                              @RequestParam("description") String description,
                              @RequestParam("price") double price,
-                             @RequestParam("quantity") int quanti) {
+                             @RequestParam("quantity") int quantity) {
         ProductDto productDto = new ProductDto();
         productDto.setVendorCode(vendorCode);
         productDto.setName(name);
         productDto.setShortDesc(shortDesc);
         productDto.setDesc(description);
         productDto.setPrice(price);
-        productDto.setQuantity(quanti);
+        productDto.setQuantity(quantity);
 
         productDto = transformer.
                 transformTo(productService.create(
@@ -63,13 +73,34 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/update/{id}", method = RequestMethod.GET)
-    public String updateProduct(@PathVariable("id") long id, ModelMap model) {
+    public String updateProductForm(@PathVariable("id") long id, ModelMap model) {
         ProductDto productDto = transformer.transformTo(productService.getById(id));
         model.addAttribute("product", productDto);
-        return "productUpdate";
+        return "updateProductForm";
     }
 
-    @RequestMapping(value = "/product/delete")
+    @RequestMapping(value = "/product/update", method = RequestMethod.POST)
+    public String updateProduct(ModelMap mapping,
+                                @RequestParam("id") long id,
+                                @RequestParam("vendor") String vendorCode,
+                                @RequestParam("name") String name,
+                                @RequestParam("short-desc") String shortDesc,
+                                @RequestParam("description") String description,
+                                @RequestParam("price") double price,
+                                @RequestParam("quantity") int quantity) {
+        ProductDto productDto = new ProductDto();
+        productDto.setId(id);
+        productDto.setVendorCode(vendorCode);
+        productDto.setName(name);
+        productDto.setShortDesc(shortDesc);
+        productDto.setDesc(description);
+        productDto.setPrice(price);
+        productDto.setQuantity(quantity);
+        Product product = productService.update(transformer.transformTo(productDto));
+        return "redirect:/product/update/" + product.getId();
+    }
+
+    @RequestMapping(value = "/product/delete/{id}", method = RequestMethod.GET)
     public void deleteProduct(ProductDto productDto) {
 
     }

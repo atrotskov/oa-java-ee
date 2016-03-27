@@ -1,7 +1,7 @@
 <%@ include file="header.jsp" %>
 <%--start of body page--%>
 
-<form class="form-horizontal" action="/product/add/action" method="get">
+<form class="form-horizontal" action="/product/add/action" method="post">
     <div class="form-group">
         <label for="vendor" class="col-sm-2 control-label">Vendor Code</label>
 
@@ -27,7 +27,18 @@
         <label for="description" class="col-sm-2 control-label">Description</label>
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+            <textarea class="form-control" rows="3" id="description" name="description"
+                      placeholder="Description"></textarea>
+            <%--<input type="text" class="form-control" id="description" name="description" placeholder="Description">--%>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputFile" class="col-sm-2 control-label">Product Picture</label>
+
+        <div class="col-sm-10">
+            <input type="file" id="exampleInputFile">
+
+            <p class="help-block">Please select picture for product</p>
         </div>
     </div>
     <div class="form-group">
