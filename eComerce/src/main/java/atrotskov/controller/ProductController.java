@@ -50,8 +50,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/add/action", method = RequestMethod.POST)
-    public String addProduct(ModelMap mapping,
-                             @RequestParam("vendor") String vendorCode,
+    public String addProduct(@RequestParam("vendor") String vendorCode,
                              @RequestParam("name") String name,
                              @RequestParam("short-desc") String shortDesc,
                              @RequestParam("description") String description,
@@ -64,12 +63,8 @@ public class ProductController {
         productDto.setDesc(description);
         productDto.setPrice(price);
         productDto.setQuantity(quantity);
-
-        productDto = transformer.
-                transformTo(productService.create(
-                        transformer.transformTo(productDto)));
-        mapping.addAttribute("product", productDto);
-        return "redirect: product";
+        long id = productService.create(transformer.transformTo(productDto)).getId();
+        return "redirect:/product/update/" + id;
     }
 
     @RequestMapping(value = "/product/update/{id}", method = RequestMethod.GET)
@@ -80,8 +75,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/update", method = RequestMethod.POST)
-    public String updateProduct(ModelMap mapping,
-                                @RequestParam("id") long id,
+    public String updateProduct(@RequestParam("id") long id,
                                 @RequestParam("vendor") String vendorCode,
                                 @RequestParam("name") String name,
                                 @RequestParam("short-desc") String shortDesc,
@@ -101,8 +95,9 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/delete/{id}", method = RequestMethod.GET)
-    public void deleteProduct(ProductDto productDto) {
-
+    public String deleteProduct(@PathVariable("id") long id) {
+        productService.getById(id);
+        productService.delete(productService.getById(id));
+        return "redirect:/product/admin";
     }
-
 }
