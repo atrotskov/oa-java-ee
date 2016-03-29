@@ -14,12 +14,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/check.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <%--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">--%>
+    <link href="/resources/css/bootstrap.css" rel="stylesheet">
+    <%--Padding for NavBar--%>
     <style>
         body {
             padding-top: 70px;
@@ -61,7 +58,7 @@
                         <a href="/admin" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">Admin Panel<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Manage Products</a></li>
+                            <li><a href="/product/admin">Manage Products</a></li>
                             <li><a href="#">Manage Categories</a></li>
                             <li><a href="#">Manage Orders</a></li>
                             <li><a href="#">Manage Users</a></li>

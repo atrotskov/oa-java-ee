@@ -13,4 +13,5 @@ public interface CategoryDao {
     boolean delete(Category category);
     Category update(Category category);
     List<Category> getAll();
+    Category getByName(String name);
 }

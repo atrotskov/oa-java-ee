@@ -1,6 +1,7 @@
 package atrotskov.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -22,13 +23,14 @@ public class Category {
     @Column(name = "parent_id")
     private long parentId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    /*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,)
     @JoinTable(
             name = "CATEGORY_PRODUCT",
             joinColumns = @JoinColumn(name = "catgory_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private Set<Product> productList;
+    )*/
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
+    private Set<Product> productList = new HashSet<>(0);
 
     public long getParentId() {
         return parentId;

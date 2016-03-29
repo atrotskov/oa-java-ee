@@ -2,8 +2,10 @@ package atrotskov.dao.impl;
 
 import atrotskov.dao.api.CategoryDao;
 import atrotskov.model.Category;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -48,5 +50,12 @@ public class CategoryDaoImpl implements CategoryDao {
     public List<Category> getAll() {
         Session sess = sessionFactory.getCurrentSession();
         return sess.createCriteria(Category.class).list();
+    }
+
+    @Override
+    public Category getByName(String name) {
+        return (Category) sessionFactory.getCurrentSession().
+                createCriteria(Category.class).
+                add(Restrictions.eq("name", name)).uniqueResult();
     }
 }

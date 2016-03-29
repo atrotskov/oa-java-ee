@@ -46,4 +46,10 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> getAll() {
         return categoryDao.getAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Category getByName(String name) {
+        return categoryDao.getByName(name);
+    }
 }

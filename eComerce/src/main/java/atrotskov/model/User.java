@@ -38,7 +38,7 @@ public class User {
 	private Role role;
 
     @Column(name = "orders")
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Order> orders;
 	
 	public Long getId() {

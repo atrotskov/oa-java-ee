@@ -1,6 +1,8 @@
 package atrotskov.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by alexey on 21.03.16.
@@ -33,6 +35,15 @@ public class Product {
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
+
+    /*@ManyToMany(fetch = FetchType.EAGER, mappedBy = "productList")*/
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "CATEGORY_PRODUCT",
+            joinColumns = @JoinColumn(name = "catgory_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Category> categories = new HashSet<>(0);
 
     public long getId() {
         return id;
@@ -96,5 +107,13 @@ public class Product {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }

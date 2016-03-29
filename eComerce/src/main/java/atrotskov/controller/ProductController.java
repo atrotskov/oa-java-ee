@@ -25,7 +25,7 @@ public class ProductController {
     Transformer transformer;
 
     @RequestMapping(value = "/product", method = RequestMethod.GET)
-    public String getAllUsers(ModelMap mapping) {
+    public String getAllProducts(ModelMap mapping) {
         List<ProductDto> productDto = new ArrayList<>();
         for (Product product : productService.getAll()) {
             productDto.add(transformer.transformTo(product));
@@ -35,12 +35,12 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/admin", method = RequestMethod.GET)
-    public String getAllUsersAdmin(ModelMap mapping) {
-        List<ProductDto> productDto = new ArrayList<>();
+    public String getAllProductsAdmin(ModelMap mapping) {
+        List<ProductDto> productsDto = new ArrayList<>();
         for (Product product : productService.getAll()) {
-            productDto.add(transformer.transformTo(product));
+            productsDto.add(transformer.transformTo(product));
         }
-        mapping.addAttribute("productList", productDto);
+        mapping.addAttribute("productList", productsDto);
         return "productAdmin";
     }
 
@@ -96,7 +96,6 @@ public class ProductController {
 
     @RequestMapping(value = "/product/delete/{id}", method = RequestMethod.GET)
     public String deleteProduct(@PathVariable("id") long id) {
-        productService.getById(id);
         productService.delete(productService.getById(id));
         return "redirect:/product/admin";
     }
