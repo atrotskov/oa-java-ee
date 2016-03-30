@@ -2,8 +2,8 @@
 <%--start of body page--%>
 
 
+  <div class="row">
 <c:forEach items="${productList}" var="product">
-<div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <img src="..." alt="...">
@@ -16,8 +16,8 @@
       </div>
     </div>
   </div>
-</div>
 </c:forEach>
+  </div>
 
 <%--end of body page--%>
 <%@ include file="footer.jsp" %>

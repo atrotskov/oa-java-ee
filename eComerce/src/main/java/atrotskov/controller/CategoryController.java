@@ -4,6 +4,7 @@ import atrotskov.dto.CategoryDto;
 import atrotskov.model.Category;
 import atrotskov.service.api.CategoryService;
 import atrotskov.transformer.Transformer;
+import atrotskov.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,26 +28,33 @@ public class CategoryController {
     @Autowired
     Transformer transformer;
 
+    @Autowired
+    Util util;
+
     @RequestMapping(value = "/category", method = RequestMethod.GET)
-    public String getAllCategories(ModelMap mapping) {
+    public String getAllCategories(ModelMap model) {
         List<CategoryDto> categoriesDto = new ArrayList<>();
         for (Category category : categoryService.getAll()) {
             categoriesDto.add(transformer.transformTo(category));
         }
-        mapping.addAttribute("categoriesList", categoriesDto);
+        model.addAttribute("categoriesList", categoriesDto);
         return "categories";
     }
 
-    @RequestMapping(value = "/category/add", method = RequestMethod.GET)
-    public String addCategoryForm(ModelMap mapping) {
-        List<Category> categories;
-        List<String> listForSelect = new ArrayList<>();
-        listForSelect.add(""); // Чтобы первый элемент в селекте формы был пустым
-        categories = categoryService.getAll();
-        for (Category category : categories) {
-            listForSelect.add(category.getName());
+    @RequestMapping(value = "/category/admin", method = RequestMethod.GET)
+    public String getAllCategoriesAdmin(ModelMap model) {
+        List<CategoryDto> categoriesDto = new ArrayList<>();
+        for (Category category : categoryService.getAll()) {
+            categoriesDto.add(transformer.transformTo(category));
         }
-        mapping.addAttribute("nameList", listForSelect);
+        model.addAttribute("categoryList", categoriesDto);
+        return "categoryAdmin";
+    }
+
+    @RequestMapping(value = "/category/add", method = RequestMethod.GET)
+    public String addCategoryForm(ModelMap model) {
+        List<String> listForSelect = util.getListOfCatName();
+        model.addAttribute("nameList", listForSelect);
         return "addCategoryForm";
     }
 
@@ -69,6 +77,10 @@ public class CategoryController {
     public String updateCategoryForm(@PathVariable("id") long id, ModelMap model) {
         CategoryDto categoryDto = transformer.transformTo(categoryService.getById(id));
         model.addAttribute("category", categoryDto);
+        List<String> listForSelect = util.getListOfCatName();
+        model.addAttribute("nameList", listForSelect);
+        String parentName = categoryService.getById(categoryDto.getParentId()).getName();
+        model.addAttribute(("parentName"), parentName);
         return "updateCategoryForm";
     }
 
@@ -76,12 +88,15 @@ public class CategoryController {
     public String updateCategory(@RequestParam("id") long id,
                                 @RequestParam("name") String name,
                                 @RequestParam("description") String description,
-                                @RequestParam("parent-id") long parentId) {
+                                @RequestParam("parent-name") String parentName) {
         CategoryDto categoryDto = new CategoryDto();
         categoryDto.setId(id);
         categoryDto.setName(name);
         categoryDto.setDesc(description);
-        categoryDto.setParentId(parentId);
+        Category res = categoryService.getByName(parentName);
+        if (res != null) {
+            categoryDto.setParentId(res.getId());
+        }
         Category category = categoryService.update(transformer.transformTo(categoryDto));
         return "redirect:/category/update/" + category.getId();
     }

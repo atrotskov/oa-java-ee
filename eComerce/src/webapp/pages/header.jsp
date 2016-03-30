@@ -59,9 +59,9 @@
                            aria-haspopup="true" aria-expanded="false">Admin Panel<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/product/admin">Manage Products</a></li>
-                            <li><a href="#">Manage Categories</a></li>
-                            <li><a href="#">Manage Orders</a></li>
-                            <li><a href="#">Manage Users</a></li>
+                            <li><a href="/category/admin">Manage Categories</a></li>
+                            <li><a href="/order/admin">Manage Orders</a></li>
+                            <li><a href="/user/admin">Manage Users</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Log in</a></li>

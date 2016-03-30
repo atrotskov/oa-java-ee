@@ -14,7 +14,7 @@ public class Category {
     @Column(name = "category_id")
     private long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "description")
@@ -22,6 +22,9 @@ public class Category {
 
     @Column(name = "parent_id")
     private long parentId;
+
+    /*@Column(name = "parent_category")
+    private Category parentCat;*/
 
     /*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,)
     @JoinTable(
