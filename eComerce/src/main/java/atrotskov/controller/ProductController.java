@@ -74,6 +74,13 @@ public class ProductController {
         return "updateProductForm";
     }
 
+    @RequestMapping(value = "/product/id/{id}", method = RequestMethod.GET)
+    public String getProduct(@PathVariable("id") long id, ModelMap model) {
+        ProductDto productDto = transformer.transformTo(productService.getById(id));
+        model.addAttribute("product", productDto);
+        return "product";
+    }
+
     @RequestMapping(value = "/product/update", method = RequestMethod.POST)
     public String updateProduct(@RequestParam("id") long id,
                                 @RequestParam("vendor") String vendorCode,

@@ -1,6 +1,6 @@
 <%@ include file="header.jsp" %>
 <%--start of body page--%>
-
+<h1>New Category</h1>
 <form class="form-horizontal" action="/category/add/action" method="post">
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Name</label>
@@ -35,6 +35,7 @@
         </div>
     </div>
 </form>
+
 
 <%--end of body page--%>
 <%@ include file="footer.jsp" %>

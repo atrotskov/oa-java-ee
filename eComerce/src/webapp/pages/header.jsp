@@ -84,3 +84,6 @@
         <!-- /.container-fluid -->
     </nav>
 </header>
+
+<div class="row">
+    <div class="col-md-8">

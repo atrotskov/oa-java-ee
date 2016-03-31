@@ -1,5 +1,6 @@
 <%@ include file="header.jsp" %>
 <%--start of body page--%>
+
 <form id="update" action=""></form>
 <table class="table table-hover">
     <tbody>

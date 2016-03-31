@@ -1,6 +1,6 @@
 <%@ include file="header.jsp" %>
 <%--start of body page--%>
-
+<h1>New Product</h1>
 <form class="form-horizontal" action="/product/add/action" method="post">
     <div class="form-group">
         <label for="vendor" class="col-sm-2 control-label">Vendor Code</label>
