@@ -1,7 +1,9 @@
 package atrotskov.controller;
 
 import atrotskov.dto.CategoryDto;
+import atrotskov.dto.ProductDto;
 import atrotskov.model.Category;
+import atrotskov.model.Product;
 import atrotskov.service.api.CategoryService;
 import atrotskov.transformer.Transformer;
 import atrotskov.utils.Util;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by alexey on 29.03.16.
@@ -77,9 +81,14 @@ public class CategoryController {
     public String updateCategoryForm(@PathVariable("id") long id, ModelMap model) {
         CategoryDto categoryDto = transformer.transformTo(categoryService.getById(id));
         model.addAttribute("category", categoryDto);
+
         List<String> listForSelect = util.getListOfCatName();
         model.addAttribute("nameList", listForSelect);
-        String parentName = categoryService.getById(categoryDto.getParentId()).getName();
+        String parentName = "";
+        if (categoryDto.getParentId() != 0) {
+            parentName = categoryService.getById(categoryDto.getParentId()).getName();
+
+        }
         model.addAttribute(("parentName"), parentName);
         return "updateCategoryForm";
     }
@@ -105,5 +114,21 @@ public class CategoryController {
     public String deleteCategory(@PathVariable("id") long id) {
         categoryService.delete(categoryService.getById(id));
         return "redirect:/category/admin";
+    }
+
+    @RequestMapping(value = "/category/id/{id}", method = RequestMethod.GET)
+    public String getProduct(@PathVariable("id") long id, ModelMap model) {
+        CategoryDto categoryDto = transformer.transformTo(categoryService.getById(id));
+        model.addAttribute("category", categoryDto);
+        Set<Product> products =  categoryService.getById(id).getProductList();
+        Set<ProductDto> productsDto = null;
+        if (!products.isEmpty()) {
+            productsDto = new HashSet<>();
+            for (Product product : products) {
+                productsDto.add(transformer.transformTo(product));
+            }
+        }
+        model.addAttribute("productList", productsDto);
+        return "categoryWithProducts";
     }
 }

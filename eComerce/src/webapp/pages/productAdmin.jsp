@@ -1,5 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page isELIgnored="false" %>
 <%@ include file="header.jsp" %>
 <%--start of body page--%>
+
+<p><a class="btn btn btn-primary" href="/product/add" role="button">Добавить продукт</a></p>
 
 <form id="update" action=""></form>
 <table class="table table-hover">
@@ -7,10 +12,10 @@
     <tr>
         <th>ID</th>
         <th>Vendor Code</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Actions</th>
+        <th>Имя</th>
+        <th>Цена</th>
+        <th>Наличие</th>
+        <th></th>
     </tr>
     <c:forEach items="${productList}" var="product">
         <tr>
@@ -22,10 +27,10 @@
             <td>
                 <form method="get">
                     <button class="btn btn-primary" formaction="/product/update/${product.getId()}">
-                        Update
+                        Изменить
                     </button>
                     <button class="btn btn-danger" formaction="/product/delete/${product.getId()}">
-                        Delete
+                        Удалить
                     </button>
                 </form>
             </td>

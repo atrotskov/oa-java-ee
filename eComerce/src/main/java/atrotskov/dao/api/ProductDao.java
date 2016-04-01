@@ -1,5 +1,6 @@
 package atrotskov.dao.api;
 
+import atrotskov.model.Category;
 import atrotskov.model.Product;
 import java.util.List;
 
@@ -12,5 +13,7 @@ public interface ProductDao {
     boolean delete(Product product);
     Product update(Product product);
     List<Product> getAll();
+    Product getByName(String name);
+    boolean addProductToCategory(Product product, Category category);
 
 }

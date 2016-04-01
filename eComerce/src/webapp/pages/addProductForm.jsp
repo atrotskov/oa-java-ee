@@ -1,6 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page isELIgnored="false" %>
 <%@ include file="header.jsp" %>
 <%--start of body page--%>
-<h1>New Product</h1>
+<h1>Новый продукт</h1>
 <form class="form-horizontal" action="/product/add/action" method="post">
     <div class="form-group">
         <label for="vendor" class="col-sm-2 control-label">Vendor Code</label>

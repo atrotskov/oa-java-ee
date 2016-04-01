@@ -21,7 +21,7 @@ public class Category {
     private String desc;
 
     @Column(name = "parent_id")
-    private long parentId;
+    private long parentId = -1;
 
     /*@Column(name = "parent_category")
     private Category parentCat;*/

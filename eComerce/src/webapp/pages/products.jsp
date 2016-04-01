@@ -1,7 +1,6 @@
 <%@ include file="header.jsp" %>
 <%--start of body page--%>
 
-
 <div class="row">
     <c:forEach items="${productList}" var="product">
         <div class="col-sm-6 col-md-4">

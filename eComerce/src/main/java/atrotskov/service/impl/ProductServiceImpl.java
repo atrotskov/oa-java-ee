@@ -1,6 +1,7 @@
 package atrotskov.service.impl;
 
 import atrotskov.dao.api.ProductDao;
+import atrotskov.model.Category;
 import atrotskov.model.Product;
 import atrotskov.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,18 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public List<Product> getAll() {
         return productDao.getAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Product getByName(String name) {
+        return productDao.getByName(name);
+    }
+
+    @Override
+    @Transactional
+    public boolean addProductToCategory(Product product, Category category) {
+        productDao.addProductToCategory(product, category);
+        return true;
     }
 }

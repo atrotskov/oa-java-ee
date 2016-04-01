@@ -2,12 +2,17 @@ package atrotskov.controller;
 
 import atrotskov.dto.ProductDto;
 import atrotskov.model.Product;
+import atrotskov.service.api.CategoryService;
 import atrotskov.service.api.ProductService;
 import atrotskov.transformer.Transformer;
+import atrotskov.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +27,13 @@ public class ProductController {
     ProductService productService;
 
     @Autowired
+    CategoryService categoryService;
+
+    @Autowired
     Transformer transformer;
+
+    @Autowired
+    Util util;
 
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String getAllProducts(ModelMap mapping) {
@@ -71,6 +82,9 @@ public class ProductController {
     public String updateProductForm(@PathVariable("id") long id, ModelMap model) {
         ProductDto productDto = transformer.transformTo(productService.getById(id));
         model.addAttribute("product", productDto);
+
+        List<String> listForSelect = util.getListOfCatName();
+        model.addAttribute("nameList", listForSelect);
         return "updateProductForm";
     }
 
@@ -87,9 +101,11 @@ public class ProductController {
                                 @RequestParam("name") String name,
                                 @RequestParam("short-desc") String shortDesc,
                                 @RequestParam("description") String description,
+                                @RequestParam("categories") List<String> catNameList,
                                 @RequestParam("price") double price,
                                 @RequestParam("quantity") int quantity) {
         ProductDto productDto = new ProductDto();
+
         productDto.setId(id);
         productDto.setVendorCode(vendorCode);
         productDto.setName(name);
@@ -97,7 +113,14 @@ public class ProductController {
         productDto.setDesc(description);
         productDto.setPrice(price);
         productDto.setQuantity(quantity);
-        Product product = productService.update(transformer.transformTo(productDto));
+        Product product = transformer.transformTo(productDto);
+        if(!catNameList.isEmpty()) {
+            for (String categorName : catNameList) {
+                productService.addProductToCategory(
+                        product, categoryService.getByName(categorName));
+            }
+        }
+        productService.update(product);
         return "redirect:/product/update/" + product.getId();
     }
 

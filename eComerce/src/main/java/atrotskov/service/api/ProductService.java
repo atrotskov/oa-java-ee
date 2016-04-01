@@ -1,5 +1,6 @@
 package atrotskov.service.api;
 
+import atrotskov.model.Category;
 import atrotskov.model.Product;
 
 import java.util.List;
@@ -17,4 +18,8 @@ public interface ProductService {
     Product update(Product product);
 
     List<Product> getAll();
+
+    Product getByName(String name);
+
+    boolean addProductToCategory(Product product, Category category);
 }

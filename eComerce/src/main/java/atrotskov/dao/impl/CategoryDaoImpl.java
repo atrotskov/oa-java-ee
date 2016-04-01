@@ -2,7 +2,6 @@ package atrotskov.dao.impl;
 
 import atrotskov.dao.api.CategoryDao;
 import atrotskov.model.Category;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
