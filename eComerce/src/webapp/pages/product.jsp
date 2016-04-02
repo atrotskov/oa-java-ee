@@ -15,7 +15,7 @@
             <dt>Quantity</dt>
             <dd>${product.getQuantity()}</dd>
         </dl>
-        <form name="add-to-cart" action="/tocart" method="post">
+        <form name="add-to-cart" action="/cart/add" method="post">
             <input name="id" value="${product.getId()}" hidden>
             <button class="btn btn-success">Add to Cart</button>
         </form>

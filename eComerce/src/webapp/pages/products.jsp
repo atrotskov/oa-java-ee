@@ -17,7 +17,7 @@
                     <p>Quantity: <c:out value="${product.getQuantity()}"></c:out></p>
 
                     <p><a href="/product/id/${product.getId()}" class="btn btn-primary" role="button">Read moore...</a>
-                    <form name="add-to-cart" action="/tocart" method="post">
+                    <form name="add-to-cart" action="/cart/add" method="post">
                         <input name="id" value="${product.getId()}" hidden>
                         <button class="btn btn-success">Add to Cart</button>
                     </form>

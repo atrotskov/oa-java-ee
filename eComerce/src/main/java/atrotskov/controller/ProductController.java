@@ -35,6 +35,14 @@ public class ProductController {
     @Autowired
     Util util;
 
+    /*Пока сделаю так, чтобе не реализовывать главную страницу интернет магазина,
+    как я себе представляю с банерами прочей продающей атрибутикой*/
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String getIndexPage() {
+        return "redirect:/product";
+    }
+
+
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String getAllProducts(ModelMap mapping) {
         List<ProductDto> productDto = new ArrayList<>();
