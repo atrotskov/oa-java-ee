@@ -54,17 +54,19 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/admin", method = RequestMethod.GET)
-    public String getAllProductsAdmin(ModelMap mapping) {
+    public String getAllProductsAdmin(ModelMap model) {
         List<ProductDto> productsDto = new ArrayList<>();
         for (Product product : productService.getAll()) {
             productsDto.add(transformer.transformTo(product));
         }
-        mapping.addAttribute("productList", productsDto);
+        model.addAttribute("productList", productsDto);
         return "productAdmin";
     }
 
     @RequestMapping(value = "/product/add", method = RequestMethod.GET)
-    public String addProductForm() {
+    public String addProductForm(ModelMap model) {
+        List<String> listForSelect = util.getListOfCatName();
+        model.addAttribute("nameList", listForSelect);
         return "addProductForm";
     }
 
@@ -73,6 +75,7 @@ public class ProductController {
                              @RequestParam("name") String name,
                              @RequestParam("short-desc") String shortDesc,
                              @RequestParam("description") String description,
+                             @RequestParam("categories") List<String> catNameList,
                              @RequestParam("price") double price,
                              @RequestParam("quantity") int quantity) {
         ProductDto productDto = new ProductDto();
@@ -82,7 +85,14 @@ public class ProductController {
         productDto.setDesc(description);
         productDto.setPrice(price);
         productDto.setQuantity(quantity);
-        long id = productService.create(transformer.transformTo(productDto)).getId();
+        Product product = transformer.transformTo(productDto);
+        long id = productService.create(product).getId();
+        if(!catNameList.isEmpty()) {
+            for (String categorName : catNameList) {
+                productService.addProductToCategory(
+                        product, categoryService.getByName(categorName));
+            }
+        }
         return "redirect:/product/update/" + id;
     }
 

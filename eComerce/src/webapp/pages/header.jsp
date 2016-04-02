@@ -68,8 +68,13 @@
                     <li><a href="#">Регистрация</a></li>
                     <li class="dropdown">
                         <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Корзина<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                           aria-haspopup="true" aria-expanded="false">Корзина
+                            <span id="cart-badge" class="badge">
+                                <c:out value="${cartImpl.getAll().size()}"></c:out>
+                            </span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" id="cart-dropdown">
                             <%@ include file="cartNavPanel.jsp" %>
                             <%--<li><a href="/cart">Перейти в корзину</a></li>
                             <li><a href="#">Another action</a></li>

@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface Cart {
     void add(ProductDto productDto);
+    void delete(ProductDto productDto);
     List<ProductDto> getAll();
+    public double getTotalPrice();
 }
 

@@ -48,7 +48,8 @@ public class CategoryDaoImpl implements CategoryDao {
     @Override
     public List<Category> getAll() {
         Session sess = sessionFactory.getCurrentSession();
-        return sess.createCriteria(Category.class).list();
+        List<Category> res = sess.createSQLQuery("SELECT * FROM category").addEntity(Category.class).list();
+        return res;
     }
 
     @Override

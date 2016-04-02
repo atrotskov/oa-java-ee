@@ -9,7 +9,7 @@
         <label for="name" class="col-sm-2 control-label">Имя</label>
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Имя категории" required>
         </div>
     </div>
     <div class="form-group">
@@ -17,7 +17,7 @@
 
         <div class="col-sm-10">
             <textarea class="form-control" rows="3" id="description" name="description"
-                      placeholder="Description"></textarea>
+                      placeholder="Описание"></textarea>
             <%--<input type="text" class="form-control" id="description" name="description" placeholder="Description">--%>
         </div>
     </div>

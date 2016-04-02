@@ -44,6 +44,21 @@
             <p class="help-block">Please select picture for product</p>
         </div>
     </div>
+
+    <div class="form-group">
+        <label for="categories" class="col-sm-2 control-label">Категории</label>
+
+        <div class="col-sm-10">
+            <select multiple class="form-control" id="categories" name="categories">
+                <c:forEach items="${nameList}" var="name">
+                    <option value="<c:out value="${name}"></c:out>">
+                        <c:out value="${name}"></c:out>
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>
+
     <div class="form-group">
         <label for="price" class="col-sm-2 control-label">Price</label>
 

@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-4">
         <%--image insert here--%>
-        <img src="..." alt="" class="img-thumbnail">
+            <img src="/resources/img/no-img.svg" alt="${product.getName()}">
     </div>
     <div class="col-md-8">
         <div class="well well-sm">${product.getShortDesc()}</div>
@@ -15,9 +15,9 @@
             <dt>Quantity</dt>
             <dd>${product.getQuantity()}</dd>
         </dl>
-        <form name="add-to-cart" action="/cart/add" method="post">
+        <form id="add-to-cart" action="/cart/add" method="post">
             <input name="id" value="${product.getId()}" hidden>
-            <button class="btn btn-success">Add to Cart</button>
+            <button id="btn-add-to-cart" class="btn btn-success">Add to Cart</button>
         </form>
     </div>
     <div class="col-md-12">

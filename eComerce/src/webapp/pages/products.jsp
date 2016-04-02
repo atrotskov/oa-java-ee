@@ -5,24 +5,18 @@
     <c:forEach items="${productList}" var="product">
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="..." alt="...">
+                <a href="/product/id/${product.getId()}">
+                    <img src="/resources/img/no-img.svg" alt="${product.getName()}">
 
-                <div class="caption">
-                    <h3><c:out value="${product.getName()}"></c:out></h3>
+                    <div class="caption">
+                        <h3><c:out value="${product.getName()}"></c:out></h3>
 
-                    <p><c:out value="${product.getShortDesc()}"></c:out></p>
+                        <p><c:out value="${product.getShortDesc()}"></c:out></p>
 
-                    <p>Price: <c:out value="${product.getPrice()}"></c:out></p>
+                        <p>Price: <c:out value="${product.getPrice()}"></c:out></p>
 
-                    <p>Quantity: <c:out value="${product.getQuantity()}"></c:out></p>
-
-                    <p><a href="/product/id/${product.getId()}" class="btn btn-primary" role="button">Read moore...</a>
-                    <form name="add-to-cart" action="/cart/add" method="post">
-                        <input name="id" value="${product.getId()}" hidden>
-                        <button class="btn btn-success">Add to Cart</button>
-                    </form>
-                    </p>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
     </c:forEach>

@@ -17,7 +17,7 @@ public class Category {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 10000)
     private String desc;
 
     @Column(name = "parent_id")

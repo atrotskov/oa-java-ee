@@ -11,7 +11,6 @@
   <tbody>
   <tr>
     <th>ID</th>
-    <th>Vendor Code</th>
     <th>Имя</th>
     <th>Цена</th>
     <th>Наличие</th>
@@ -24,13 +23,9 @@
       <td><c:out value="${product.getPrice()}"></c:out></td>
       <td><c:out value="${product.getQuantity()}"></c:out></td>
       <td>
-        <form method="get">
-          <button class="btn btn-primary" formaction="/product/update/${product.getId()}">
-            Изменить
-          </button>
-          <button class="btn btn-danger" formaction="/product/delete/${product.getId()}">
-            Удалить
-          </button>
+        <form method="post" action="/cart/delete">
+          <input name="id" value="${product.getId()}" hidden>
+          <button class="btn btn-danger">Удалить</button>
         </form>
       </td>
     </tr>
