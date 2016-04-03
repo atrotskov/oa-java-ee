@@ -27,8 +27,8 @@ public class CartImpl implements Serializable, Cart {
             if (productsDto.get(i).getId() == productDto.getId()) {
                 productsDto.remove(i);
                 System.out.println("product was deleted");
+                return;
             }
-            return;
         }
         //productsDto.remove(productDto); не работает, наверное объекты не эквивалентны,
         // нужно будет проверить.

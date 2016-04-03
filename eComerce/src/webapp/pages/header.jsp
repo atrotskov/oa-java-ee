@@ -65,7 +65,7 @@
                         </ul>
                     </li>
                     <li><a href="/login">Войти</a></li>
-                    <li><a href="#">Регистрация</a></li>
+                    <li><a href="/registration">Регистрация</a></li>
                     <li class="dropdown">
                         <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">Корзина

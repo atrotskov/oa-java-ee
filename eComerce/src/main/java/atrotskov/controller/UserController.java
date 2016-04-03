@@ -1,7 +1,6 @@
 package atrotskov.controller;
 
 import atrotskov.dto.UserDto;
-import atrotskov.model.Role;
 import atrotskov.model.User;
 import atrotskov.service.api.ProductService;
 import atrotskov.service.api.UserService;
@@ -9,13 +8,14 @@ import atrotskov.transformer.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class GuestController {
+public class UserController {
 
     @Autowired
     public UserService userService;
@@ -41,12 +41,17 @@ public class GuestController {
         return "userList";
     }
 
-    @RequestMapping(value = "/user/add")
+    @RequestMapping(value = "/registration")
+    public String addUserForm() {
+        return "registration";
+    }
+
+    /*@RequestMapping(value = "/user/add")
     public String addUser(UserDto userDto) {
         return null;
     }
 
-    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public String addUser(@RequestParam("first-name") String firstName,
                           @RequestParam("last-name") String lastName,
                           @RequestParam("email") String email,
@@ -90,7 +95,7 @@ public class GuestController {
     @RequestMapping(value = "/user/delete")
     public void deleteUser(UserDto userDto) {
 
-    }
+    }*/
 
    /* @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getUserListGet(ModelMap model){

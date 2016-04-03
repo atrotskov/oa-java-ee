@@ -18,9 +18,10 @@
     <http use-expressions="false" disable-url-rewriting="false">
         <intercept-url pattern="/resources/**" access="ROLE_ANONYMOUS, ROLE_USER, ROLE_ADMIN"/>
         <intercept-url pattern="/login" access="ROLE_ANONYMOUS"/>
+        <intercept-url pattern="/*/admin/**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/*/add**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/*/update**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/*/delete**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/*/update**" access="ROLE_ADMIN" method="GET"/>
+        <intercept-url pattern="/*/delete**" access="ROLE_ADMIN" method="POST"/>
         <intercept-url pattern="/cart/**" access="ROLE_ANONYMOUS, ROLE_USER, ROLE_ADMIN"/>
         <intercept-url pattern="/**" access="ROLE_ANONYMOUS, ROLE_USER, ROLE_ADMIN"/>
         <form-login login-page="/login" />

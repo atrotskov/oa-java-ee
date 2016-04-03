@@ -7,6 +7,7 @@ import atrotskov.transformer.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +32,8 @@ public class CartController {
     ProductService productService;
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public String getCart() {
+    public String getCart(ModelMap model) {
+        model.addAttribute("totalPrice", cart.getTotalPrice());
         return "cart";
     }
 
@@ -46,5 +48,18 @@ public class CartController {
     public String deleteFromCart(@RequestParam("id") long id) {
         cart.delete(transformer.transformTo(productService.getById(id)));
         return "redirect:/cart";
+    }
+
+    @RequestMapping(value = "/cart/checkout", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public String checkoutCart() {
+
+        /*В данном месте будет следующая логика:
+        Беру текущего пользователя из сессии спринг секьюра и объект
+                корзины из сессии и все это передаю в качестве двух параметров
+                методу создания нового Ордера*/
+
+        String msg = "Спасибо за Ваш заказ. В скором времени с вами свяжется менеджер";
+        return msg;
     }
 }

@@ -13,7 +13,6 @@
     <th>ID</th>
     <th>Имя</th>
     <th>Цена</th>
-    <th>Наличие</th>
     <th></th>
   </tr>
   <c:forEach items="${cartImpl.getAll()}" var="product">
@@ -21,17 +20,33 @@
       <td><c:out value="${product.getId()}"></c:out></td>
       <td><c:out value="${product.getName()}"></c:out></td>
       <td><c:out value="${product.getPrice()}"></c:out></td>
-      <td><c:out value="${product.getQuantity()}"></c:out></td>
       <td>
         <form method="post" action="/cart/fromcart">
-          <input name="id" value="${product.getId()}" hidden>
+          <input name="id" value="<c:out value="${product.getId()}"></c:out>" hidden>
           <button class="btn btn-danger">Удалить</button>
         </form>
       </td>
     </tr>
   </c:forEach>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><p>Сумма заказа</p></td>
+    <td><strong><c:out value="${totalPrice}"></c:out></strong></td>
+  </tr>
   </tbody>
 </table>
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="msg"></div>
+  </div>
+  <div class="col-md-2">
+    <form id="from-cart" action="/cart/checkout" method="post">
+      <button class="btn btn-danger">Оформить заказ</button>
+    </form>
+  </div>
+</div>
 
 
 

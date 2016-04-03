@@ -1,48 +1,77 @@
 <%@ include file="header.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page isELIgnored="false" %>
 <%--start of body page--%>
 
-<form class="form-horizontal" action="/user/add" method="post">
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <form class="form-horizontal">
 
-  <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="form-group">
+                <label for="login" class="col-sm-2 control-label">Логин</label>
 
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" required>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="description" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="login" placeholder="Логин" required>
+                </div>
+            </div>
 
-    <div class="col-sm-10">
-            <textarea class="form-control" rows="3" id="description" name="description"
-                      placeholder="Description"><c:out value="${category.getDesc()}"></c:out></textarea>
-      <%--<input type="text" class="form-control" id="description" name="description" placeholder="Description">--%>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="parent-name" class="col-sm-2 control-label">Choose parent Category</label>
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email</label>
 
-    <div class="col-sm-10">
-      <select class="form-control" id="parent-name" name="parent-name">
-        <c:forEach items="${nameList}" var="name">
-          <option
-                  <c:choose>
-                    <c:when test="${name == parentName}">
-                      selected
-                    </c:when>
-                  </c:choose>>
-            <c:out value="${name}"></c:out>
-          </option>
-        </c:forEach>
-      </select>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Пароль</label>
+
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" placeholder="Пароль" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="first-name" class="col-sm-2 control-label">Имя</label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="first-name" placeholder="Имя">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="last-name" class="col-sm-2 control-label">Фамилия</label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="last-name" placeholder="Фамилия">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="birthday" class="col-sm-2 control-label">Дата вашего рождения</label>
+
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="birthday" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone" class="col-sm-2 control-label">Телефон</label>
+
+                <div class="col-sm-10">
+                    <input type="tel" class="form-control" id="telephone" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Сохранить</button>
+                </div>
+            </div>
+        </form>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <input type="submit" class="btn btn-primary" value="Update">
-    </div>
-  </div>
-</form>
+</div>
 
 
 <%--end of body page--%>
