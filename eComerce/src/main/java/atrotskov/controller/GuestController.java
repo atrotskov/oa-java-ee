@@ -26,6 +26,11 @@ public class GuestController {
     @Autowired
     public Transformer transformer;
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginPage() {
+        return "login";
+    }
+
     @RequestMapping(value = "/user")
     public String getAllUser(ModelMap model) {
         List<UserDto> usersDto = new ArrayList<>();

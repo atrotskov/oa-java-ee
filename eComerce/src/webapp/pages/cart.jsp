@@ -23,7 +23,7 @@
       <td><c:out value="${product.getPrice()}"></c:out></td>
       <td><c:out value="${product.getQuantity()}"></c:out></td>
       <td>
-        <form method="post" action="/cart/delete">
+        <form method="post" action="/cart/fromcart">
           <input name="id" value="${product.getId()}" hidden>
           <button class="btn btn-danger">Удалить</button>
         </form>

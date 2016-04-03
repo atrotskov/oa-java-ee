@@ -35,14 +35,14 @@ public class CartController {
         return "cart";
     }
 
-    @RequestMapping(value = "/cart/add", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/cart/tocart", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public List<ProductDto> addToCart(@RequestParam("id") long id) {
         cart.add(transformer.transformTo(productService.getById(id)));
         return cart.getAll();
     }
 
-    @RequestMapping(value = "/cart/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/cart/fromcart", method = RequestMethod.POST)
     public String deleteFromCart(@RequestParam("id") long id) {
         cart.delete(transformer.transformTo(productService.getById(id)));
         return "redirect:/cart";
